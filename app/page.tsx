@@ -62,6 +62,14 @@ export default function PinjamLab() {
     return () => { alive = false; listener.subscription.unsubscribe() }
   }, [loadData])
 
+  useEffect(() => {
+    if (!user || !profile) return
+    const params = new URLSearchParams(window.location.search)
+    if (params.get('access') === 'denied') setMessage('Akses admin hanya tersedia untuk akun administrator.')
+    if (params.get('section') === 'Kelola alat' && profile.role === 'admin') setSection('Kelola alat')
+    if (params.has('access') || params.has('section')) window.history.replaceState({}, '', window.location.pathname)
+  }, [user, profile])
+
   const admin = profile?.role === 'admin'
   const activeLoans = useMemo(() => loans.filter((loan) => loan.status === 'Dipinjam'), [loans])
   const borrowedByTool = useMemo(() => activeLoans.reduce<Record<string, number>>((acc, loan) => { acc[loan.alat_id] = (acc[loan.alat_id] ?? 0) + 1; return acc }, {}), [activeLoans])
