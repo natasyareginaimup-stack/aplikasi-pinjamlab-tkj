@@ -4,7 +4,7 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'PinjamLab TKJ — Peminjaman Alat Lab',
-  description: 'Sistem peminjaman alat laboratorium Teknik Komputer dan Jaringan.',
+  description: 'Masuk ke PinjamLab TKJ untuk melihat inventaris, mengajukan peminjaman, dan memantau riwayat alat laboratorium.',
   generator: 'v0.app',
   icons: {
     icon: [
